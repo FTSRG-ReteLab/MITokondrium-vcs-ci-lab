@@ -44,6 +44,7 @@ public class TrainSystemTest {
 	@Test
 	public void test2() {
 		user.overrideJoystickPosition(3);
+		//user.overrideJoystickPosition(6);
 		controller.followSpeed();
 		user.overrideJoystickPosition(-5);
 		controller.followSpeed();
