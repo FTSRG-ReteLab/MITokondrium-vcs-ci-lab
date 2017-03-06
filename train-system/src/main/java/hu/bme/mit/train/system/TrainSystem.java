@@ -1,6 +1,6 @@
 package hu.bme.mit.train.system;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
@@ -30,9 +30,11 @@ public class TrainSystem {
 	public TrainUser getUser() {
 		return user;
 	}
+	public Table<Long, Integer, Integer> getTable() {
+		return myTable;
+	}
 	  
-    public void putValues() {
-    	Date date = new Date(0);
+    public void putValues(Date date) {
         myTable.put(date.getTime(), getController().getReferenceSpeed(), getUser().getJoystickPosition());
     }
 }

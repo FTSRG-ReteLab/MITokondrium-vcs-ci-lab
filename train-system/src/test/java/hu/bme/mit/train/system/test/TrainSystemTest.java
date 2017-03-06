@@ -1,8 +1,12 @@
 package hu.bme.mit.train.system.test;
 
+import java.util.Date;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.google.common.collect.Table;
 
 import hu.bme.mit.train.interfaces.TrainController;
 import hu.bme.mit.train.interfaces.TrainSensor;
@@ -14,13 +18,16 @@ public class TrainSystemTest {
 	TrainController controller;
 	TrainSensor sensor;
 	TrainUser user;
+	Table<Long, Integer, Integer> table;
+	TrainSystem system;
 	
 	@Before
 	public void before() {
-		TrainSystem system = new TrainSystem();
+		system = new TrainSystem();
 		controller = system.getController();
 		sensor = system.getSensor();
 		user = system.getUser();
+		table = system.getTable();
 
 		sensor.overrideSpeedLimit(50);
 	}
@@ -60,16 +67,14 @@ public class TrainSystemTest {
 		controller.followSpeed();
 		Assert.assertEquals(5, controller.getReferenceSpeed());
 	}
-	/*
+	
 	@Test
 	public void test4() {
-		user.overrideJoystickPosition(-3);
-		//user.overrideJoystickPosition(6);
-		controller.followSpeed();
-		user.overrideJoystickPosition(5);
-		controller.followSpeed();
-		Assert.assertEquals(5, controller.getReferenceSpeed());
-	}*/
+		Date date = new Date();
+		system.putValues(date);
+		table = system.getTable();
+		Assert.assertNotNull(table);
+	}
 	
 
 	
